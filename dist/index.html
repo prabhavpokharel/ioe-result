@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="IOE Result Calculator — Track your semester marks and aggregate for Tribhuvan University engineering programs.">
+  <title>IOE Result — Know Your Standing</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  
+<style>:root{--ink:#1c1a16;--ink-2:#4e4a42;--ink-3:#9a9690;--ink-4:#c8c4bc;--paper:#faf9f6;--paper-2:#f3f1ec;--paper-3:#ebe8e0;--paper-4:#e2dfd6;--sage:#5c7d6a;--sage-l:#dce8e1;--sage-ll:#f0f5f2;--sage-d:#3e5c4a;--gold:#a07832;--gold-l:#f0e6d2;--gold-ll:#faf5ec;--coral:#b85440;--coral-l:#f5e0da;--coral-ll:#fdf4f2;--sky:#3a6e96;--sky-l:#d8eaf5;--sky-ll:#f0f7fc;--mist:#6a5e8c;--mist-l:#e8e4f5;--mist-ll:#f5f3fb;--r-xs:6px;--r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:32px;--sh-1:0 1px 3px rgba(28,26,22,.05),0 1px 2px rgba(28,26,22,.04);--sh-2:0 4px 14px rgba(28,26,22,.07),0 1px 4px rgba(28,26,22,.04);--sh-3:0 10px 36px rgba(28,26,22,.09),0 2px 8px rgba(28,26,22,.05);--ff-display:'Playfair Display',Georgia,'Times New Roman',serif;--ff-body:'Outfit',system-ui,sans-serif;--ff-mono:'JetBrains Mono','Courier New',monospace;--trans:.22s cubic-bezier(.4,0,.2,1);}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;font-size:16px;}body{font-family:var(--ff-body);background:var(--paper);color:var(--ink);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;}input,button{font-family:inherit;}button{cursor:pointer;}body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.022'/%3E%3C/svg%3E");}.nav{position:sticky;top:0;z-index:200;height:56px;background:rgba(250,249,246,.93);backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid var(--paper-4);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1rem,5vw,2.5rem);}.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--ff-display);font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;text-decoration:none;}.nav-logo-mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;}.nav-logo-mark svg{width:14px;height:14px;fill:var(--paper);}.nav-tag{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--paper-4);padding:3px 8px;border-radius:var(--r-xs);display:none;}@media(min-width:580px){.nav-tag{display:block;}}.nav-right{display:flex;align-items:center;gap:10px;}.pill{position:relative;display:flex;background:var(--paper-3);border:1px solid var(--paper-4);border-radius:99px;padding:3px;}.pill-slider{position:absolute;top:3px;bottom:3px;left:3px;border-radius:99px;background:var(--ink);transition:transform var(--trans),width var(--trans);pointer-events:none;will-change:transform,width;}.pill-btn{position:relative;z-index:1;font-family:var(--ff-body);font-size:.68rem;font-weight:500;letter-spacing:.03em;padding:5px 15px;border-radius:99px;border:none;background:none;color:var(--ink-2);transition:color var(--trans);white-space:nowrap;}.pill-btn.on{color:var(--paper);}.hero{max-width:1080px;margin:0 auto;padding:clamp(2.5rem,6vw,5rem) clamp(1rem,5vw,2.5rem) 0;display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}@media(max-width:640px){.hero{grid-template-columns:1fr;}}.hero-kicker{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem;}.hero-kicker::before{content:'';width:16px;height:1px;background:var(--ink-3);}h1{font-family:var(--ff-display);font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:700;line-height:1.0;letter-spacing:-.03em;color:var(--ink);}h1 em{font-style:italic;color:var(--sage-d);}.hero-sub{margin-top:.9rem;font-size:.88rem;color:var(--ink-2);line-height:1.85;max-width:400px;font-weight:300;}.dial-wrap{display:flex;flex-direction:column;align-items:center;gap:.6rem;}@media(max-width:640px){.dial-wrap{flex-direction:row;align-items:flex-end;margin-top:1.5rem;gap:1.25rem;}}.dial-svg-wrap{position:relative;}.dial-svg{width:136px;height:136px;display:block;}@media(max-width:640px){.dial-svg{width:88px;height:88px;}}.dial-track{fill:none;stroke:var(--paper-3);stroke-width:9;stroke-linecap:round;}.dial-arc{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1),stroke .4s ease;will-change:stroke-dashoffset;}.dial-inner-num{font-family:var(--ff-display);font-size:1.5rem;font-weight:700;fill:var(--ink);text-anchor:middle;dominant-baseline:central;}.dial-inner-lbl{font-family:var(--ff-mono);font-size:.33rem;fill:var(--ink-3);text-anchor:middle;dominant-baseline:central;letter-spacing:.1em;text-transform:uppercase;}.dial-caption{font-family:var(--ff-mono);font-size:.62rem;color:var(--ink-3);letter-spacing:.06em;text-align:center;max-width:130px;line-height:1.5;}@media(max-width:640px){.dial-caption{text-align:left;max-width:200px;}}.scene-rule{max-width:1080px;margin:2.5rem auto 0;padding:0 clamp(1rem,5vw,2.5rem);display:flex;align-items:center;gap:14px;}.rule-line{flex:1;height:1px;background:var(--paper-4);}.rule-text{font-family:var(--ff-mono);font-size:.6rem;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}.wrap{max-width:1080px;margin:0 auto;padding:2rem clamp(1rem,5vw,2.5rem) 7rem;}.panel{display:none;}.panel.on{display:block;animation:panelIn .35s cubic-bezier(.4,0,.2,1) both;}@keyframes panelIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}.sh{display:flex;align-items:center;gap:12px;margin-bottom:.95rem;margin-top:2.75rem;}.sh:first-child{margin-top:0;}.sh-n{font-family:var(--ff-mono);font-size:.58rem;color:var(--ink-4);letter-spacing:.1em;min-width:2ch;}.sh-t{font-family:var(--ff-mono);font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap;}.sh-l{flex:1;height:1px;background:var(--paper-4);}.sh-h{font-family:var(--ff-mono);font-size:.58rem;color:var(--ink-4);letter-spacing:.06em;white-space:nowrap;}.fac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px;margin-bottom:0;}.fac-btn{background:var(--paper);border:1.5px solid var(--paper-4);border-radius:var(--r-sm);padding:.8rem 1rem;text-align:left;transition:border-color var(--trans),background var(--trans),transform .15s ease,box-shadow var(--trans);position:relative;}.fac-btn:hover{border-color:var(--paper-3);transform:translateY(-1px);box-shadow:var(--sh-1);}.fac-btn:focus-visible{outline:2px solid var(--sage);outline-offset:2px;}.fac-btn.on{border-color:var(--sage);background:var(--sage-ll);}.fac-code{font-family:var(--ff-display);font-size:.95rem;font-weight:700;line-height:1;color:var(--ink);margin-bottom:3px;transition:color var(--trans);}.fac-btn.on .fac-code{color:var(--sage-d);}.fac-label{font-size:.62rem;color:var(--ink-3);line-height:1.3;}.fac-tick{position:absolute;top:6px;right:6px;width:15px;height:15px;border-radius:50%;background:var(--sage);display:none;align-items:center;justify-content:center;}.fac-tick svg{width:7px;height:7px;stroke:white;stroke-width:2.5;fill:none;}.fac-btn.on .fac-tick{display:flex;}.tc{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-2);}.tc-head{padding:1.1rem 1.5rem;border-bottom:1px solid var(--paper-4);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;background:var(--paper-2);}.tc-head-l{display:flex;align-items:center;gap:10px;}.tc-icon{width:32px;height:32px;border-radius:8px;background:var(--paper-3);border:1px solid var(--paper-4);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}.tc-title{font-family:var(--ff-display);font-size:.92rem;font-weight:700;color:var(--ink);}.tc-sub{font-size:.68rem;color:var(--ink-3);margin-top:1px;}.clr-btn{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.08em;color:var(--ink-3);background:none;border:1px solid var(--paper-4);padding:4px 11px;border-radius:var(--r-xs);transition:border-color var(--trans),color var(--trans);}.clr-btn:hover{border-color:var(--coral);color:var(--coral);}.tbl-scroll{overflow-x:auto;}table{width:100%;border-collapse:collapse;min-width:480px;}thead th{padding:8px 14px;font-family:var(--ff-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:400;text-align:left;border-bottom:1px solid var(--paper-4);background:var(--paper-2);}thead th:not(:first-child){text-align:center;}tbody tr{border-bottom:1px solid rgba(226,223,214,.6);transition:background .1s;}tbody tr:last-child{border-bottom:none;}tbody tr:hover{background:var(--paper-2);}tbody td{padding:9px 14px;font-size:.82rem;}tbody td:not(:first-child){text-align:center;}.sc{display:flex;align-items:center;gap:9px;}.sc-n{width:25px;height:25px;border-radius:7px;background:var(--paper-3);border:1px solid var(--paper-4);display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:.65rem;color:var(--ink-3);flex-shrink:0;}.sc-name{font-size:.82rem;font-weight:500;color:var(--ink-2);}.yr-tag{display:inline-block;font-family:var(--ff-mono);font-size:.58rem;padding:2px 7px;border-radius:5px;letter-spacing:.04em;}.iw{display:flex;align-items:center;gap:5px;justify-content:center;}.mi{width:80px;padding:6px 9px;border-radius:8px;border:1.5px solid var(--paper-4);background:var(--paper);color:var(--ink);font-family:var(--ff-mono);font-size:.8rem;text-align:center;outline:none;transition:border-color var(--trans),background var(--trans),box-shadow var(--trans);-moz-appearance:textfield;}.mi::-webkit-inner-spin-button,.mi::-webkit-outer-spin-button{-webkit-appearance:none;}.mi:focus{border-color:var(--sage);background:var(--sage-ll);box-shadow:0 0 0 3px rgba(92,125,106,.12);}.mi.bad{border-color:var(--coral);background:var(--coral-ll);animation:shk .28s;}@keyframes shk{0%,100%{transform:translateX(0)}30%{transform:translateX(-4px)}70%{transform:translateX(4px)}}.iof{font-family:var(--ff-mono);font-size:.62rem;color:var(--ink-3);}.pv{display:inline-block;min-width:64px;}.pn{font-family:var(--ff-mono);font-size:.78rem;}.pb{height:3px;background:var(--paper-3);border-radius:99px;margin-top:4px;overflow:hidden;}.pbf{height:100%;border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1),background .3s;}.dash{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;}@media(max-width:600px){.dash{grid-template-columns:1fr 1fr;}.dash .dm{grid-column:1/-1;}}.dc{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-md);padding:1.15rem 1.25rem;box-shadow:var(--sh-1);overflow:hidden;position:relative;}.dm{background:var(--ink);border-color:var(--ink);}.dm::before{content:'';position:absolute;top:-50px;right:-50px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(92,125,106,.2) 0%,transparent 65%);pointer-events:none;}.dl{font-family:var(--ff-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;}.dm .dl{color:rgba(250,249,246,.38);}.dv{font-family:var(--ff-display);font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--ink);transition:color var(--trans);}.dm .dv{color:var(--paper);font-size:3.2rem;}.ds{font-size:.7rem;color:var(--ink-3);margin-top:5px;}.dm .ds{color:rgba(250,249,246,.38);}.yrg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}@media(max-width:540px){.yrg{grid-template-columns:repeat(2,1fr);}}.yrc{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-md);padding:1rem 1.1rem;box-shadow:var(--sh-1);overflow:hidden;position:relative;transition:border-color .3s;}.yrl{font-family:var(--ff-mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;}.yrv{font-family:var(--ff-display);font-size:1.6rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--ink-3);transition:color .3s;}.yrw{font-family:var(--ff-mono);font-size:.58rem;color:var(--ink-3);margin-top:1px;}.yrc-contrib{font-size:.7rem;color:var(--ink-2);margin-top:5px;}.yrc-bar{height:3px;background:var(--paper-3);border-radius:99px;margin-top:9px;overflow:hidden;}.yrc-fill{height:100%;border-radius:99px;transition:width .65s cubic-bezier(.4,0,.2,1);}.chart{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-lg);padding:1.4rem;box-shadow:var(--sh-1);}.chart-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.2rem;}.chart-title{font-family:var(--ff-display);font-size:.92rem;font-weight:700;color:var(--ink);}.chart-leg{display:flex;gap:14px;}.leg-i{display:flex;align-items:center;gap:5px;font-family:var(--ff-mono);font-size:.58rem;color:var(--ink-3);}.leg-dot{width:8px;height:8px;border-radius:2px;}.chart-area{position:relative;height:168px;}.chart-bars{display:flex;align-items:flex-end;gap:6px;height:100%;}.bg{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;}.bc{width:100%;display:flex;align-items:flex-end;height:calc(100% - 20px);}.bar{width:100%;border-radius:5px 5px 0 0;transition:height .55s cubic-bezier(.4,0,.2,1);min-height:3px;cursor:pointer;position:relative;}.bar:hover{filter:brightness(.92);}.bar-tt{position:absolute;bottom:calc(100%+5px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);border-radius:7px;padding:4px 8px;font-family:var(--ff-mono);font-size:.62rem;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s;z-index:10;}.bar:hover .bar-tt{opacity:1;}.blbl{font-family:var(--ff-mono);font-size:.58rem;color:var(--ink-3);text-align:center;}.tgt-line{position:absolute;left:0;right:0;border-top:1.5px dashed;pointer-events:none;transition:top .5s cubic-bezier(.4,0,.2,1);}.tgt-lbl{position:absolute;right:0;top:-14px;font-family:var(--ff-mono);font-size:.56rem;padding:2px 5px;border-radius:4px;}.standing{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-lg);padding:1.5rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;box-shadow:var(--sh-1);transition:border-color .4s,background .35s;}@media(max-width:500px){.standing{grid-template-columns:1fr;}}.st-lbl{font-family:var(--ff-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem;}.st-name{font-family:var(--ff-display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:var(--ink-3);transition:color .35s;}.st-desc{font-size:.78rem;color:var(--ink-2);line-height:1.75;margin-top:.3rem;max-width:500px;}.st-bar{height:5px;background:var(--paper-3);border-radius:99px;margin-top:12px;overflow:hidden;}.st-fill{height:100%;border-radius:99px;transition:width .75s cubic-bezier(.4,0,.2,1),background .35s;}.st-badge{font-family:var(--ff-display);font-size:1rem;font-weight:700;padding:10px 20px;border-radius:var(--r-sm);border:1.5px solid;white-space:nowrap;text-align:center;transition:all .35s;}.proj{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-1);}.proj-hd{padding:1.05rem 1.5rem;border-bottom:1px solid var(--paper-4);background:var(--paper-2);display:flex;align-items:center;gap:10px;}.proj-ico{width:30px;height:30px;border-radius:7px;background:var(--gold-ll);border:1px solid rgba(160,120,50,.2);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0;}.proj-ttl{font-family:var(--ff-display);font-size:.9rem;font-weight:700;color:var(--ink);}.proj-s{font-size:.68rem;color:var(--ink-3);margin-top:1px;}.proj-body{padding:1.35rem;}.proj-empty{text-align:center;padding:2.5rem 1rem;}.proj-empty-icon{font-size:1.8rem;opacity:.25;margin-bottom:.5rem;}.proj-empty-txt{font-size:.76rem;color:var(--ink-3);}.proj-ctx{background:var(--paper-2);border:1px solid var(--paper-4);border-radius:var(--r-xs);padding:.8rem 1rem;font-size:.76rem;color:var(--ink-2);line-height:1.75;margin-bottom:1rem;}.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:8px;}.pjc{border:1px solid var(--paper-4);border-radius:var(--r-sm);padding:1.1rem;background:var(--paper);position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}.pjc:hover{transform:translateY(-2px);box-shadow:var(--sh-2);}.pjc-top{position:absolute;top:0;left:0;right:0;height:2px;border-radius:2px 2px 0 0;}.pjc-label{font-family:var(--ff-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}.pjc-num{font-family:var(--ff-display);font-size:1.75rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.3rem;}.pjc-desc{font-size:.7rem;color:var(--ink-2);line-height:1.55;margin-bottom:.5rem;}.pjc-diff{display:inline-flex;font-family:var(--ff-mono);font-size:.57rem;font-weight:500;padding:2px 7px;border-radius:99px;}.gpa-scale{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem;}.gsi{flex:1;min-width:54px;background:var(--paper);border:1px solid var(--paper-4);border-radius:8px;padding:.55rem .7rem;text-align:center;position:relative;}.gsi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:2px 2px 0 0;}.gs-g{font-family:var(--ff-display);font-size:.92rem;font-weight:700;display:block;line-height:1;margin-bottom:2px;}.gs-r{font-family:var(--ff-mono);font-size:.52rem;color:var(--ink-3);display:block;line-height:1.3;}.gs-p{font-family:var(--ff-mono);font-size:.6rem;font-weight:500;margin-top:2px;display:block;}.notice{background:var(--gold-ll);border:1px solid rgba(160,120,50,.25);border-radius:var(--r-xs);padding:.75rem 1rem;font-size:.73rem;color:#6b4e1c;line-height:1.75;margin-bottom:1.5rem;display:flex;gap:8px;align-items:flex-start;}.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:8px;}.info-card{background:var(--paper);border:1px solid var(--paper-4);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-1);}.info-card-hdr{padding:.72rem 1.1rem;border-bottom:1px solid var(--paper-4);background:var(--paper-2);display:flex;align-items:center;gap:7px;}.info-card-hdr span:last-child{font-family:var(--ff-display);font-size:.85rem;font-weight:700;color:var(--ink);}.info-card-body{padding:.88rem 1.1rem;display:flex;flex-direction:column;gap:.42rem;}.ir{display:flex;gap:8px;align-items:flex-start;}.id{width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:7px;}.it{font-size:.76rem;color:var(--ink-2);line-height:1.68;}footer{border-top:1px solid var(--paper-4);padding:1.2rem clamp(1rem,5vw,2.5rem);background:var(--paper-2);text-align:center;}footer p{font-family:var(--ff-mono);font-size:.6rem;color:var(--ink-3);letter-spacing:.06em;}footer span{color:var(--sage-d);}</style>
+</head>
+
+<body>
+
+<!-- ════ NAV ════ -->
+<nav class="nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 14 14"><path d="M2 2h10v2H2zM2 6h10v2H2zM2 10h6v2H2z"/></svg>
+    </div>
+    IOE Result
+  </a>
+  <div class="nav-right">
+    <span class="nav-tag">Tribhuvan University</span>
+    <div class="pill" id="pill">
+      <div class="pill-slider" id="pillSlider"></div>
+      <button class="pill-btn on" id="btnOld" onclick="switchMode('old')">2079 &amp; Before</button>
+      <button class="pill-btn"   id="btnNew" onclick="switchMode('new')">2080+ · GPA</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div>
+    <div class="hero-kicker">IOE · Tribhuvan University</div>
+    <h1>Know exactly<br>where you <em>stand.</em></h1>
+    <p class="hero-sub">Enter your marks semester by semester. Your aggregate calculates live — and so does what you need to reach any target.</p>
+  </div>
+  <div class="dial-wrap">
+    <div class="dial-svg-wrap">
+      <svg class="dial-svg" viewBox="0 0 136 136" role="img" aria-labelledby="dialTitle">
+        <title id="dialTitle">Result gauge</title>
+        <circle class="dial-track" cx="68" cy="68" r="50"
+          stroke-dasharray="235 314"
+          stroke-dashoffset="-81"
+          transform="rotate(-220 68 68)"/>
+        <circle class="dial-arc" id="dialArc" cx="68" cy="68" r="50"
+          stroke="#5c7d6a"
+          stroke-dasharray="235 314"
+          stroke-dashoffset="235"
+          transform="rotate(-220 68 68)"/>
+        <text class="dial-inner-num" id="dialNum" x="68" y="64">—</text>
+        <text class="dial-inner-lbl" id="dialLbl" x="68" y="78">aggregate</text>
+      </svg>
+    </div>
+    <div class="dial-caption" id="dialCaption">Enter marks to<br>see your result</div>
+  </div>
+</section>
+
+<!-- scene rule -->
+<div class="scene-rule">
+  <div class="rule-line"></div>
+  <div class="rule-text" id="sceneLabel">Batch 2079 &amp; Before · Percentage System</div>
+  <div class="rule-line"></div>
+</div>
+
+<!-- ════ MAIN ════ -->
+<div class="wrap">
+
+  <!-- ══════ OLD PANEL ══════ -->
+  <div class="panel on" id="panOld">
+
+    <div class="sh" style="margin-top:0">
+      <span class="sh-n">01</span><span class="sh-t">Program</span>
+      <div class="sh-l"></div><span class="sh-h">BCE · BCT · BEI</span>
+    </div>
+    <div class="fac-grid" id="ofGrid" style="margin-bottom:2rem"></div>
+
+    <div class="sh"><span class="sh-n">02</span><span class="sh-t">Semester Marks</span><div class="sh-l"></div></div>
+    <div class="tc" style="margin-bottom:2rem">
+      <div class="tc-head">
+        <div class="tc-head-l">
+          <div class="tc-icon">✏️</div>
+          <div>
+            <div class="tc-title" id="oTtl">Semester Marks</div>
+            <div class="tc-sub">Enter marks obtained for each semester</div>
+          </div>
+        </div>
+        <button class="clr-btn" onclick="clearOld()">↺ Clear all</button>
+      </div>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Semester</th><th>Year</th><th>Marks</th><th>Full Marks</th><th>Percentage</th>
+            </tr>
+          </thead>
+          <tbody id="oTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-n">03</span><span class="sh-t">Results</span><div class="sh-l"></div></div>
+    <div class="dash" style="margin-bottom:2rem">
+      <div class="dc dm">
+        <div class="dl">Weighted Aggregate</div>
+        <div class="dv" id="oAgg">—</div>
+        <div class="ds" id="oAggS">enter marks to calculate</div>
+      </div>
+      <div class="dc">
+        <div class="dl">Semesters Done</div>
+        <div class="dv" id="oSD" style="font-size:2.2rem">0</div>
+        <div class="ds">of 8 semesters</div>
+      </div>
+      <div class="dc">
+        <div class="dl">Total Scored</div>
+        <div class="dv" id="oTS" style="font-size:2.2rem">—</div>
+        <div class="ds" id="oTSS">marks entered</div>
+      </div>
+    </div>
+
+    <div class="sh">
+      <span class="sh-n">04</span><span class="sh-t">Year Breakdown</span>
+      <div class="sh-l"></div>
+      <span class="sh-h">Y1 20% · Y2 20% · Y3 30% · Y4 30%</span>
+    </div>
+    <div class="yrg" id="oYrG" style="margin-bottom:2rem"></div>
+
+    <div class="sh"><span class="sh-n">05</span><span class="sh-t">Semester Chart</span><div class="sh-l"></div></div>
+    <div class="chart" style="margin-bottom:2rem">
+      <div class="chart-hdr">
+        <span class="chart-title">Performance per Semester</span>
+        <div class="chart-leg">
+          <div class="leg-i"><div class="leg-dot" style="background:var(--sage)"></div>Your %</div>
+          <div class="leg-i"><div class="leg-dot" style="background:var(--paper-4);border:1px dashed var(--ink-4)"></div>80% line</div>
+        </div>
+      </div>
+      <div class="chart-area" id="oCA"><div class="chart-bars" id="oBars"></div></div>
+    </div>
+
+    <div class="sh"><span class="sh-n">06</span><span class="sh-t">Division Standing</span><div class="sh-l"></div></div>
+    <div class="standing" id="oSC" style="margin-bottom:2rem">
+      <div>
+        <div class="st-lbl">Your Division</div>
+        <div class="st-name" id="oSN">— Awaiting your marks</div>
+        <div class="st-desc" id="oSD2">Enter semester marks above to see your division and academic standing.</div>
+        <div class="st-bar"><div class="st-fill" id="oSB" style="width:0%;background:var(--paper-3)"></div></div>
+      </div>
+      <div class="st-badge" id="oSBg" style="background:var(--paper-2);color:var(--ink-3);border-color:var(--paper-4)">—</div>
+    </div>
+
+    <div class="sh"><span class="sh-n">07</span><span class="sh-t">What I Need</span><div class="sh-l"></div></div>
+    <div class="proj" style="margin-bottom:2rem">
+      <div class="proj-hd">
+        <div class="proj-ico">🎯</div>
+        <div>
+          <div class="proj-ttl">Projection</div>
+          <div class="proj-s">Minimum % per remaining semester to reach each division</div>
+        </div>
+      </div>
+      <div class="proj-body" id="oPB">
+        <div class="proj-empty">
+          <div class="proj-empty-icon">📋</div>
+          <p class="proj-empty-txt">Enter at least one semester's marks to see your projections.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panOld -->
+
+
+  <!-- ══════ NEW PANEL ══════ -->
+  <div class="panel" id="panNew">
+
+    <div class="sh" style="margin-top:0">
+      <span class="sh-t">GPA Scale Reference</span><div class="sh-l"></div>
+    </div>
+    <div class="gpa-scale">
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#2a9d6a;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#2a9d6a">A</span><span class="gs-r">90–100%</span><span class="gs-p" style="color:#2a9d6a">4.0</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#45b87c;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#45b87c">A−</span><span class="gs-r">85–89%</span><span class="gs-p" style="color:#45b87c">3.7</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#3a6e96;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#3a6e96">B+</span><span class="gs-r">80–84%</span><span class="gs-p" style="color:#3a6e96">3.3</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#5888a8;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#5888a8">B</span><span class="gs-r">75–79%</span><span class="gs-p" style="color:#5888a8">3.0</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#82a4bc;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#82a4bc">B−</span><span class="gs-r">70–74%</span><span class="gs-p" style="color:#82a4bc">2.7</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#a07832;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#a07832">C+</span><span class="gs-r">65–69%</span><span class="gs-p" style="color:#a07832">2.3</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#b89040;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#b89040">C</span><span class="gs-r">60–64%</span><span class="gs-p" style="color:#b89040">2.0</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#b85440;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#b85440">D+</span><span class="gs-r">55–59%</span><span class="gs-p" style="color:#b85440">1.7</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#c46e58;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#c46e58">D</span><span class="gs-r">50–54%</span><span class="gs-p" style="color:#c46e58">1.3</span></div>
+      <div class="gsi"><span style="position:absolute;top:0;left:0;right:0;height:2px;background:#9a3c2c;border-radius:2px 2px 0 0"></span><span class="gs-g" style="color:#9a3c2c">F</span><span class="gs-r">&lt;50%</span><span class="gs-p" style="color:#9a3c2c">0.0</span></div>
+    </div>
+    <div class="notice">
+      <span style="flex-shrink:0;margin-top:1px">⚠</span>
+      <span>The official IOE GPA scale for batch 2080+ is not yet publicly published. This scale follows standard TU pattern — verify with your college or IOE Exam Control Division, Chakupat, Lalitpur.</span>
+    </div>
+
+    <div class="sh">
+      <span class="sh-n">01</span><span class="sh-t">Program</span>
+      <div class="sh-l"></div><span class="sh-h">All 12 programs</span>
+    </div>
+    <div class="fac-grid" id="nfGrid" style="margin-bottom:2rem"></div>
+
+    <div class="sh"><span class="sh-n">02</span><span class="sh-t">Semester GPA</span><div class="sh-l"></div></div>
+    <div class="tc" style="margin-bottom:2rem">
+      <div class="tc-head">
+        <div class="tc-head-l">
+          <div class="tc-icon">📊</div>
+          <div>
+            <div class="tc-title" id="nTtl">Semester GPA Entry</div>
+            <div class="tc-sub">Enter GPA (0.00 – 4.00) for each completed semester</div>
+          </div>
+        </div>
+        <button class="clr-btn" onclick="clearNew()">↺ Clear all</button>
+      </div>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>Semester</th><th>Year</th><th>GPA (0–4.0)</th><th>Grade</th><th>Standing</th></tr>
+          </thead>
+          <tbody id="nTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-n">03</span><span class="sh-t">Results</span><div class="sh-l"></div></div>
+    <div class="dash" style="margin-bottom:2rem">
+      <div class="dc dm">
+        <div class="dl">Cumulative GPA</div>
+        <div class="dv" id="nCG">—</div>
+        <div class="ds" id="nCGS">enter GPAs to calculate</div>
+      </div>
+      <div class="dc">
+        <div class="dl">Semesters Done</div>
+        <div class="dv" id="nSD" style="font-size:2.2rem">0</div>
+        <div class="ds" id="nSDS">of 8 semesters</div>
+      </div>
+      <div class="dc">
+        <div class="dl">Best Semester</div>
+        <div class="dv" id="nBest" style="font-size:2.2rem">—</div>
+        <div class="ds" id="nBestS">highest GPA</div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-n">04</span><span class="sh-t">GPA Chart</span><div class="sh-l"></div></div>
+    <div class="chart" style="margin-bottom:2rem">
+      <div class="chart-hdr">
+        <span class="chart-title">GPA per Semester</span>
+        <div class="chart-leg">
+          <div class="leg-i"><div class="leg-dot" style="background:var(--mist)"></div>Your GPA</div>
+          <div class="leg-i"><div class="leg-dot" style="background:var(--paper-4);border:1px dashed var(--ink-4)"></div>3.7 target</div>
+        </div>
+      </div>
+      <div class="chart-area" id="nCA"><div class="chart-bars" id="nBars"></div></div>
+    </div>
+
+    <div class="sh"><span class="sh-n">05</span><span class="sh-t">Academic Standing</span><div class="sh-l"></div></div>
+    <div class="standing" id="nSC" style="margin-bottom:2rem">
+      <div>
+        <div class="st-lbl">Your Standing</div>
+        <div class="st-name" id="nSN">— Awaiting your GPAs</div>
+        <div class="st-desc" id="nSD2">Enter semester GPAs above to see your academic standing.</div>
+        <div class="st-bar"><div class="st-fill" id="nSB" style="width:0%;background:var(--paper-3)"></div></div>
+      </div>
+      <div class="st-badge" id="nSBg" style="background:var(--paper-2);color:var(--ink-3);border-color:var(--paper-4)">—</div>
+    </div>
+
+    <div class="sh"><span class="sh-n">06</span><span class="sh-t">What I Need</span><div class="sh-l"></div></div>
+    <div class="proj" style="margin-bottom:2rem">
+      <div class="proj-hd">
+        <div class="proj-ico" style="background:var(--mist-ll);border-color:rgba(106,94,140,.2)">🎯</div>
+        <div>
+          <div class="proj-ttl">Projection</div>
+          <div class="proj-s">Minimum avg GPA per remaining semester to hit target standing</div>
+        </div>
+      </div>
+      <div class="proj-body" id="nPB">
+        <div class="proj-empty">
+          <div class="proj-empty-icon">📋</div>
+          <p class="proj-empty-txt">Enter at least one semester GPA to see projections.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panNew -->
+
+
+  <!-- ══ INFO (shared) ══ -->
+  <div class="sh"><span class="sh-t">About IOE</span><div class="sh-l"></div></div>
+  <div class="info-grid" style="margin-bottom:2rem">
+    <div class="info-card">
+      <div class="info-card-hdr"><span>📋</span><span>Exam Structure</span></div>
+      <div class="info-card-body">
+        <div class="ir"><div class="id" style="background:var(--sage)"></div><div class="it">Theory: 3 hrs, 80 marks final + 20 internal = <strong>100 total</strong>. Short: 1.5 hrs, 40 + 10 = 50 total.</div></div>
+        <div class="ir"><div class="id" style="background:var(--sage)"></div><div class="it">Each theory paper divided into <strong>5 units</strong>, each worth 20% of the final exam.</div></div>
+        <div class="ir"><div class="id" style="background:var(--sage)"></div><div class="it">Practicals assessed continuously — lab work, reports, viva voce, presentations.</div></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-hdr"><span>✅</span><span>Pass Rules</span></div>
+      <div class="info-card-body">
+        <div class="ir"><div class="id" style="background:var(--sky)"></div><div class="it">Old system: must score <strong>40% separately</strong> in both internal and final exam of each subject.</div></div>
+        <div class="ir"><div class="id" style="background:var(--sky)"></div><div class="it">New system: minimum <strong>50% (Grade D, 1.3 GPA)</strong> required per subject.</div></div>
+        <div class="ir"><div class="id" style="background:var(--coral)"></div><div class="it"><strong>Back exam passes do not count</strong> toward aggregate / CGPA. Minimum <strong>70% attendance</strong> mandatory.</div></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-hdr"><span>🎓</span><span>After Graduation</span></div>
+      <div class="info-card-body">
+        <div class="ir"><div class="id" style="background:var(--mist)"></div><div class="it"><strong>Transcript:</strong> TU Office, Balkhu. Lost marksheets: Rs. 200 each from college or IOE Exam Control, Chakupat.</div></div>
+        <div class="ir"><div class="id" style="background:var(--mist)"></div><div class="it"><strong>NEC registration</strong> — Nepal Engineering Council, the authorized certification body.</div></div>
+        <div class="ir"><div class="id" style="background:var(--mist)"></div><div class="it"><strong>MSc entrance:</strong> first week of November. BE / B.Arch entrance: Shrawan / Bhadra (CBT format).</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p>For <span>IOE</span> students · Tribhuvan University · Batch 2079 &amp; before (%) · Batch 2080+ (GPA) · ⚡ No external requests</p>
+</footer>
+
+<!-- Scripts loaded in dependency order -->
+
+
+<script>(function(){
+  // Disable right-click context menu
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+  // Disable common keyboard shortcuts for devtools / view source
+  document.addEventListener('keydown', function(e){
+    // F12
+    if (e.keyCode === 123) { e.preventDefault(); return false; }
+    // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && [73,74,67].includes(e.keyCode)) { e.preventDefault(); return false; }
+    // Ctrl+U (view source)
+    if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
+    // Ctrl+S (save page)
+    if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }
+  });
+
+  // DevTools size-change detection (basic)
+  var _w = window.outerWidth - window.innerWidth;
+  var _h = window.outerHeight - window.innerHeight;
+  setInterval(function(){
+    var dw = window.outerWidth - window.innerWidth - _w;
+    var dh = window.outerHeight - window.innerHeight - _h;
+    if (Math.abs(dw) > 160 || Math.abs(dh) > 160) {
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#9a9690;font-size:14px;">Please close developer tools to use this page.</div>';
+    }
+  }, 1000);
+})();
+const OP={ BCT:{l: "BCT", f: "Computer Engineering", s: [725,650,875,900,875,825,825,750] }, BCE:{l: "BCE", f: "Civil Engineering", s: [675,700,700,750,875,750,750,650] }, BEI:{l: "BEI", f: "Electronics, Comm.&Info.", s: [775,750,700,775,775,825,775,675]}}; const NP={ BCT:{l: "BCT", f: "Computer Engineering" }, BCE:{l: "BCE", f: "Civil Engineering" }, BEI:{l: "BEI", f: "Electronics, Comm.&Info." }, BEL:{l: "BEL", f: "Electrical Engineering" }, BME:{l: "BME", f: "Mechanical Engineering" }, BAG:{l: "BAG", f: "Agriculture Engineering" }, BGE:{l: "BGE", f: "Geomatics Engineering" }, BIE:{l: "BIE", f: "Industrial Engineering" }, BAU:{l: "BAU", f: "Automobile Engineering" }, BAS:{l: "BAS", f: "Aerospace Engineering" }, BChE:{l: "BChE", f: "Chemical Engineering" }, BAR:{l: "B.Arch", f: "Architecture (10 sems)"}}; const SEM_NAMES=[ "First","Second","Third","Fourth", "Fifth","Sixth","Seventh","Eighth", "Ninth","Tenth" ]; const SEM_YEAR=[1,1,2,2,3,3,4,4]; const YEAR_WEIGHTS=[0.20, 0.20, 0.30, 0.30]; const YEAR_COLORS=["#3a6e96","#a07832","#5c7d6a","#6a5e8c"]; const YEAR_BG=["#d8eaf5","#f0e6d2","#dce8e1","#e8e4f5"]; const DIVISIONS=[{k:"dist", l:"Distinction", t:80, c:"#3e5c4a", bg:"#dce8e1", bc:"rgba(62,92,74,.3)", bar:"#5c7d6a" },{k:"1st", l:"First Division", t:65, c:"#2a5278", bg:"#d8eaf5", bc:"rgba(42,82,120,.3)", bar:"#3a6e96" },{k:"2nd", l:"Second Division", t:50, c:"#7a5c1a", bg:"#f0e6d2", bc:"rgba(122,92,26,.3)", bar:"#a07832" },{k:"pass", l:"Pass", t:40, c:"#7a3a28", bg:"#f5e0da", bc:"rgba(122,58,40,.3)", bar:"#b85440" },{k:"fail", l:"Fail", t:0, c:"#6a2c20", bg:"#fde8e4", bc:"rgba(106,44,32,.3)", bar:"#b85440" }, ]; const GPA_STANDINGS=[{k:"exc", l:"Excellent", t:3.7, c:"#3e5c4a", bg:"#dce8e1", bc:"rgba(62,92,74,.3)", bar:"#5c7d6a" },{k:"vg", l:"Very Good", t:3.3, c:"#2a5278", bg:"#d8eaf5", bc:"rgba(42,82,120,.3)", bar:"#3a6e96" },{k:"gd", l:"Good", t:3.0, c:"#7a5c1a", bg:"#f0e6d2", bc:"rgba(122,92,26,.3)", bar:"#a07832" },{k:"st", l:"Satisfactory", t:2.0, c:"#7a3a28", bg:"#f5e0da", bc:"rgba(122,58,40,.3)", bar:"#b85440" },{k:"ni", l:"Needs Improvement", t:0, c:"#6a2c20", bg:"#fde8e4", bc:"rgba(106,44,32,.3)", bar:"#b85440" }, ]; function pctColor(p){if (p == null) return "var(--ink-3)"; if (p >= 80) return "#3e5c4a"; if (p >= 65) return "#2a5278"; if (p >= 50) return "#7a5c1a"; if (p >= 40) return "#b85440"; return "#8a2c20";}function gpaColor(g){if (g >= 3.7) return "#3e5c4a"; if (g >= 3.3) return "#2a5278"; if (g >= 3.0) return "#7a5c1a"; if (g >= 2.0) return "#b85440"; return "#8a2c20";}function gpaLetter(g){if (g >= 3.85) return "A"; if (g >= 3.55) return "A−"; if (g >= 3.15) return "B+"; if (g >= 2.85) return "B"; if (g >= 2.55) return "B−"; if (g >= 2.15) return "C+"; if (g >= 1.85) return "C"; if (g >= 1.55) return "D+"; if (g >= 1.15) return "D"; return "F";}function gpaLabel(g){if (g >= 3.7) return "Excellent"; if (g >= 3.3) return "Very Good"; if (g >= 3.0) return "Good"; if (g >= 2.0) return "Satisfactory"; return "Needs Improvement";}function getDiv(pct){for (const d of DIVISIONS) if (pct >= d.t) return d; return DIVISIONS[DIVISIONS.length-1];}function getGpaSt(g){for (const s of GPA_STANDINGS) if (g >= s.t) return s; return GPA_STANDINGS[GPA_STANDINGS.length-1];}function pctCell(pct){if (pct == null) return `<span class="pn" style="color:var(--ink-3)">—</span>`; const c=pctColor(pct); return `<span class="pn" style="color:${c}">${pct.toFixed(1)}%</span> <div class="pb"><div class="pbf" style="width:${Math.min(pct,100)}%;background:${c}"></div></div>`;}function gpaCell(g){if (g == null) return `<span class="pn" style="color:var(--ink-3)">—</span>`; const c=gpaColor(g); return `<span class="pn" style="color:${c}">${g.toFixed(2)}</span> <div class="pb"><div class="pbf" style="width:${(g/4)*100}%;background:${c}"></div></div>`;}function projDifficultyOld(needed){if (needed >= 80) return{label:"Very Hard", c:"#8a2c20", bg:"#fde8e4" }; if (needed >= 65) return{label:"Hard", c:"#b85440", bg:"#f5e0da" }; if (needed >= 50) return{label:"Moderate", c:"#7a5c1a", bg:"#f0e6d2" }; return{label:"Achievable", c:"#3e5c4a", bg:"#dce8e1" };}function projDifficultyGpa(needed){if (needed >= 3.7) return{label:"Very Hard", c:"#8a2c20", bg:"#fde8e4" }; if (needed >= 3.3) return{label:"Hard", c:"#b85440", bg:"#f5e0da" }; if (needed >= 3.0) return{label:"Moderate", c:"#7a5c1a", bg:"#f0e6d2" }; return{label:"Achievable", c:"#3e5c4a", bg:"#dce8e1" };}const DIAL_ARC=235; function setDial(val, max, colorHex, caption, currentMode){const arc=document.getElementById("dialArc"); const num=document.getElementById("dialNum"); const lbl=document.getElementById("dialLbl"); const cap=document.getElementById("dialCaption"); lbl.textContent=currentMode === "old"?"aggregate":"cgpa"; if (val == null){arc.style.strokeDashoffset=DIAL_ARC; arc.style.stroke="#c8c4bc"; num.textContent="—"; cap.textContent="Enter marks to see your result"; return;}const pct=Math.min(Math.max(val/max, 0), 1); arc.style.strokeDashoffset=DIAL_ARC-pct*DIAL_ARC*0.88; arc.style.stroke=colorHex || "#5c7d6a"; num.textContent=currentMode === "old"?val.toFixed(1)+"%":val.toFixed(2); cap.textContent=caption || "";}function refreshDial(mode, oldState, newState){if (mode === "old"){const{agg}= oldState; if (agg != null){const d=getDiv(agg); setDial(agg, 100, d.bar, d.l, mode);}else{setDial(null, 100, null, null, mode);}} else{const{cgpa}= newState; if (cgpa != null){const s=getGpaSt(cgpa); setDial(cgpa, 4, s.bar, s.l, mode);}else{setDial(null, 4, null, null, mode);}}}window._appMode="old"; function initPill(){posSlider(document.getElementById("btnOld")); window.addEventListener("resize", () =>{posSlider( window._appMode === "old"?document.getElementById("btnOld"):document.getElementById("btnNew") ); });}function posSlider(btn){const pill=document.getElementById("pill"); const slider=document.getElementById("pillSlider"); const pr=pill.getBoundingClientRect(); const br=btn.getBoundingClientRect(); slider.style.transform=`translateX(${br.left-pr.left-3}px)`; slider.style.width=br.width+"px";}function switchMode(m){window._appMode=m; const bO=document.getElementById("btnOld"); const bN=document.getElementById("btnNew"); bO.classList.toggle("on", m === "old"); bN.classList.toggle("on", m === "new"); posSlider(m === "old"?bO:bN); document.getElementById("panOld").classList.toggle("on", m === "old"); document.getElementById("panNew").classList.toggle("on", m === "new"); document.getElementById("sceneLabel").textContent=m === "old"?"Batch 2079&Before · Percentage System":"Batch 2080+ · Credit-based GPA System"; if (m === "old"){const{agg}= calcOldStats(); refreshDial("old",{agg }, {});}else{const{cgpa}= calcNewStats(); refreshDial("new", {},{cgpa });}} function makeFacBtn(k, p, isCurrent, onClick){const btn=document.createElement("button"); btn.className="fac-btn"+(isCurrent?" on":""); btn.setAttribute("aria-pressed", isCurrent?"true":"false"); btn.innerHTML=` <div class="fac-code">${p.l}</div> <div class="fac-label">${p.f}</div> <div class="fac-tick" aria-hidden="true"> <svg viewBox="0 0 10 10"> <polyline points="1.5,5 4,8 8.5,2"/> </svg> </div>`; btn.onclick=onClick; return btn;}let oFac="BCT"; let oMK={}; function calcOldStats(){const p=OP[oFac]; const s=p.s; let yS=[0,0,0,0]; let yFM=[0,0,0,0]; let yC=[0,0,0,0]; let filled=0, tS=0, tFM=0; s.forEach((fm, i) =>{const yr=SEM_YEAR[i]-1; yFM[yr] += fm; const v=oMK[i]; if (v !== undefined && !isNaN(v)){yS[yr] += v; yC[yr] += 1; filled += 1; tS += v; tFM += fm;}}); const yP=yFM.map((fm, i) => yC[i]>0?(yS[i]/fm)*100:null); let aggSum=0, aggW=0; yP.forEach((p, i) =>{if (p != null){aggSum += p*YEAR_WEIGHTS[i]; aggW += YEAR_WEIGHTS[i];}}); return{agg: aggW>0?aggSum/aggW:null, filled, yP, yS, yFM, yC, tS, tFM };}function renderOldFaculty(){const grid=document.getElementById("ofGrid"); grid.innerHTML=""; Object.entries(OP).forEach(([k, p]) =>{grid.appendChild(makeFacBtn(k, p, k === oFac, () =>{oFac=k; oMK={}; renderOldFaculty(); renderOldTable(); updateOld(); })); });}function renderOldTable(){const p=OP[oFac]; document.getElementById("oTtl").textContent=p.l+" — "+p.f; const tb=document.getElementById("oTbody"); tb.innerHTML=""; p.s.forEach((fm, i) =>{const yr=SEM_YEAR[i]; const v=oMK[i]; const pct=(v !== undefined && !isNaN(v))?(v/fm)*100:null; const tr=document.createElement("tr"); tr.innerHTML=` <td> <div class="sc"> <div class="sc-n">${i+1}</div> <div class="sc-name">${SEM_NAMES[i]} Semester</div> </div> </td> <td> <span class="yr-tag" style="background:${YEAR_BG[yr-1]};color:${YEAR_COLORS[yr-1]}"> Year ${yr} </span> </td> <td> <div class="iw"> <input type="number" class="mi" id="OI${i}" value="${v !== undefined && !isNaN(v)?v:''}" placeholder="—" min="0" max="${fm}" step="1" aria-label="Semester ${i+1} marks out of ${fm}" oninput="onOldInput(${i})"> <span class="iof">/ ${fm}</span> </div> </td> <td> <span style="font-family:var(--ff-mono);font-size:.74rem;color:var(--ink-3)">${fm}</span> </td> <td id="oPC${i}"> <div class="pv">${pctCell(pct)}</div> </td>`; tb.appendChild(tr); });}function onOldInput(i){const inp=document.getElementById("OI"+i); const raw=inp.value.trim(); const fm=OP[oFac].s[i]; if (raw === ""){delete oMK[i]; inp.classList.remove("bad");}else{const v=parseFloat(raw); if (isNaN(v) || v<0 || v>fm){inp.classList.add("bad"); oMK[i]=NaN;}else{inp.classList.remove("bad"); oMK[i]=v;}} const pct=(oMK[i] !== undefined && !isNaN(oMK[i]))?(oMK[i]/fm)*100:null; const cell=document.getElementById("oPC"+i); if (cell) cell.innerHTML=`<div class="pv">${pctCell(pct)}</div>`; updateOld();}function updateOld(){const{agg, filled, yP, yS, yFM, yC, tS, tFM}= calcOldStats(); const ae=document.getElementById("oAgg"); const as2=document.getElementById("oAggS"); if (agg != null){ae.textContent=agg.toFixed(2)+"%"; ae.style.color="var(--paper)"; as2.textContent=getDiv(agg).l+" · weighted aggregate";}else{ae.textContent="—"; ae.style.color=""; as2.textContent="enter marks to calculate";}document.getElementById("oSD").textContent=filled; const se=document.getElementById("oTS"); const ss=document.getElementById("oTSS"); if (filled>0){se.textContent=tS; ss.textContent="out of "+tFM+" marks entered";}else{se.textContent="—"; ss.textContent="marks entered";}renderOldYearCards(yP, yS, yFM); renderOldChart(); renderOldStanding(agg, filled); renderOldProjection(agg, filled, yP, yS, yFM); if (window._appMode === "old"){refreshDial("old",{agg }, {});}} function renderOldYearCards(yP, yS, yFM){const grid=document.getElementById("oYrG"); grid.innerHTML=""; [0,1,2,3].forEach(i =>{const p=yP[i]; const c=YEAR_COLORS[i]; const bg=YEAR_BG[i]; const w=YEAR_WEIGHTS[i]; const sem=["Sem 1–2","Sem 3–4","Sem 5–6","Sem 7–8"][i]; const card=document.createElement("div"); card.className="yrc"; if (p != null) card.style.borderColor=c+"99"; card.innerHTML=` <div class="yrl">Year ${i+1} · ${Math.round(w*100)}%</div> <div class="yrv" style="color:${p != null?c:"var(--ink-3)"}"> ${p != null?p.toFixed(1)+"%":"—"} </div> <div class="yrw">${sem}</div> ${p != null?`<div class="yrc-contrib">Adds <strong style="color:${c}">${(p*w).toFixed(1)}%</strong> to final</div>`:`<div class="yrc-contrib" style="color:var(--ink-3)">not entered yet</div>`}<div class="yrc-bar"> <div class="yrc-fill" style="width:${p != null?Math.min(p,100):0}%;background:${c}"></div> </div>`; grid.appendChild(card); });}function renderOldChart(){const p=OP[oFac]; const ca=document.getElementById("oCA"); const ex=ca.querySelector(".tgt-line"); if (ex) ex.remove(); const tl=document.createElement("div"); tl.className="tgt-line"; tl.style.cssText="top:20%;border-color:rgba(92,125,106,.3)"; const tll=document.createElement("div"); tll.className="tgt-lbl"; tll.style.cssText="color:var(--sage-d);background:var(--sage-ll);font-family:var(--ff-mono);font-size:.56rem"; tll.textContent="80%"; tl.appendChild(tll); ca.appendChild(tl); const bars=document.getElementById("oBars"); bars.innerHTML=""; p.s.forEach((fm, i) =>{const v=oMK[i]; const pct=(v !== undefined && !isNaN(v))?v/fm*100:null; const yr=SEM_YEAR[i]-1; const col=YEAR_COLORS[yr]; const grp=document.createElement("div"); grp.className="bg"; const h=pct != null?Math.max(Math.min(pct, 100), 1.5):0; const bar=document.createElement("div"); bar.className="bar"; bar.style.cssText=`height:${h}%;background:${pct != null?col:"var(--paper-3)"};opacity:${pct != null?1:.45}`; if (pct != null){const tt=document.createElement("div"); tt.className="bar-tt"; tt.textContent=`Sem ${i+1}: ${pct.toFixed(1)}%`; bar.appendChild(tt);}const lbl=document.createElement("div"); lbl.className="blbl"; lbl.textContent="S"+(i+1); const bc=document.createElement("div"); bc.className="bc"; bc.appendChild(bar); grp.appendChild(bc); grp.appendChild(lbl); bars.appendChild(grp); });}function renderOldStanding(agg, filled){const card=document.getElementById("oSC"); const nm=document.getElementById("oSN"); const bar=document.getElementById("oSB"); const badge=document.getElementById("oSBg"); const desc=document.getElementById("oSD2"); if (agg == null || filled === 0){card.style.borderColor=""; nm.textContent="— Awaiting your marks"; nm.style.color="var(--ink-3)"; desc.textContent="Enter semester marks above to see your division and standing."; bar.style.width="0%"; bar.style.background="var(--paper-3)"; badge.textContent="—"; badge.style.background="var(--paper-2)"; badge.style.color="var(--ink-3)"; badge.style.borderColor="var(--paper-4)"; return;}const d=getDiv(agg); const rem=8-filled; const nxt=DIVISIONS.find(x => x.t>d.t && x.k !== "fail"); let txt=`Your aggregate is ${agg.toFixed(2)}%.`; if (d.k === "dist" || d.k === "1st"){txt += " Keep going strong.";}else if (nxt){txt += ` You need ${(nxt.t-agg).toFixed(2)}% more to reach ${nxt.l}.`;}if (rem>0) txt += ` ${rem} semester${rem !== 1?"s":""} remaining.`; card.style.borderColor=d.bc; nm.textContent=d.l; nm.style.color=d.c; desc.textContent=txt; bar.style.width=Math.min(agg, 100)+"%"; bar.style.background=d.bar; badge.textContent=agg.toFixed(1)+"%"; badge.style.background=d.bg; badge.style.color=d.c; badge.style.borderColor=d.bc;}function renderOldProjection(agg, filled, yP, yS, yFM){const body=document.getElementById("oPB"); if (filled === 0){body.innerHTML=`<div class="proj-empty"> <div class="proj-empty-icon">📋</div> <p class="proj-empty-txt">Enter at least one semester's marks to see your projections.</p> </div>`; return;}if (filled === 8){body.innerHTML=`<div class="proj-ctx"> All 8 semesters entered. Final aggregate: <strong>${agg != null?agg.toFixed(2)+"%":"—"}</strong> ${agg != null?". "+getDiv(agg).l+".":""} </div>`; return;}const p=OP[oFac]; const rem=8-filled; let rFM=[0,0,0,0]; p.s.forEach((fm, i) =>{if (oMK[i] === undefined || isNaN(oMK[i])) rFM[SEM_YEAR[i]-1] += fm; }); let doneCont=0; yP.forEach((pp, i) =>{if (pp != null) doneCont += pp*YEAR_WEIGHTS[i]; }); let remW=0; [0,1,2,3].forEach(i =>{const tFM=p.s.filter((_, j) => SEM_YEAR[j]-1 === i).reduce((a,b) => a+b, 0); if (tFM>0) remW += (rFM[i]/tFM)*YEAR_WEIGHTS[i]; }); let html=`<div class="proj-ctx"> ${filled} of 8 semesters entered. Current aggregate: <strong>${agg != null?agg.toFixed(2)+"%":"—"}</strong>. ${rem} semester${rem !== 1?"s":""} remaining. <em style="font-size:.68rem;color:var(--ink-3)"> Numbers below are the average needed across all remaining semesters.</em> </div><div class="proj-grid">`; DIVISIONS.slice(0,4).forEach(d =>{if (agg != null && agg >= d.t){html += `<div class="pjc" style="background:${d.bg};border-color:${d.bc}"> <div class="pjc-top" style="background:${d.bar}"></div> <div class="pjc-label" style="color:${d.c}">${d.l}</div> <div class="pjc-num" style="color:${d.c}">Secured ✓</div> <div class="pjc-desc">Already at this level with current marks.</div> <span class="pjc-diff" style="background:rgba(62,92,74,.12);color:#3e5c4a">Achieved</span> </div>`; return;}const needed=remW>0?(d.t-doneCont)/remW:null; if (needed == null || needed>100){html += `<div class="pjc" style="opacity:.5"> <div class="pjc-top" style="background:var(--paper-4)"></div> <div class="pjc-label" style="color:var(--ink-3)">${d.l}</div> <div class="pjc-num" style="color:var(--ink-3)">&gt;100%</div> <div class="pjc-desc">Not achievable given current scores.</div> <span class="pjc-diff" style="background:var(--paper-3);color:var(--ink-3)">Not possible</span> </div>`; return;}const{label, c, bg}= projDifficultyOld(needed); html += `<div class="pjc" style="border-color:${d.bc}"> <div class="pjc-top" style="background:${d.bar}"></div> <div class="pjc-label" style="color:${d.c}">${d.l} (≥${d.t}%)</div> <div class="pjc-num" style="color:${c}">${needed.toFixed(1)}%</div> <div class="pjc-desc">Average needed per remaining semester.</div> <span class="pjc-diff" style="background:${bg};color:${c}">${label}</span> </div>`; }); html += "</div>"; body.innerHTML=html;}function clearOld(){oMK={}; renderOldTable(); updateOld();}let nFac="BCT"; let nMK={}; function calcNewStats(){const total=nSemCount(); let sum=0, cnt=0, hi=null, hiI=-1; for (let i=0; i<total; i++){const v=nMK[i]; if (v !== undefined && !isNaN(v)){sum += v; cnt += 1; if (hi == null || v>hi){hi=v; hiI=i;}}}return{cgpa: cnt>0?sum/cnt:null, filled: cnt, hi, hiI, total };}function nSemCount(){return nFac === "BAR"?10:8;}function renderNewFaculty(){const grid=document.getElementById("nfGrid"); grid.innerHTML=""; Object.entries(NP).forEach(([k, p]) =>{grid.appendChild(makeFacBtn(k, p, k === nFac, () =>{nFac=k; nMK={}; renderNewFaculty(); renderNewTable(); updateNew(); })); });}function renderNewTable(){const p=NP[nFac]; const total=nSemCount(); document.getElementById("nTtl").textContent=p.l+" — "+p.f; document.getElementById("nSDS").textContent="of "+total+" semesters"; const tb=document.getElementById("nTbody"); tb.innerHTML=""; for (let i=0; i<total; i++){const yr=nFac === "BAR"?Math.ceil((i+1)/2):SEM_YEAR[Math.min(i,7)]; const v=nMK[i]; const gpa=(v !== undefined && !isNaN(v))?v:null; const tr=document.createElement("tr"); tr.innerHTML=` <td> <div class="sc"> <div class="sc-n">${i+1}</div> <div class="sc-name">${SEM_NAMES[i] || ("Sem "+(i+1))} Semester</div> </div> </td> <td> <span class="yr-tag" style="background:${YEAR_BG[Math.min(yr-1,3)]};color:${YEAR_COLORS[Math.min(yr-1,3)]}"> Year ${yr} </span> </td> <td> <div class="iw"> <input type="number" class="mi" id="NI${i}" value="${gpa != null?gpa:''}" placeholder="—" min="0" max="4.0" step="0.01" aria-label="Semester ${i+1} GPA out of 4.0" oninput="onNewInput(${i})"> <span class="iof">/ 4.0</span> </div> </td> <td> <span style="font-family:var(--ff-mono);font-size:.76rem;color:${gpa != null?gpaColor(gpa):"var(--ink-3)"}" id="NGr${i}"> ${gpa != null?gpaLetter(gpa):"—"} </span> </td> <td id="nPC${i}"> <div class="pv">${gpaCell(gpa)}</div> </td>`; tb.appendChild(tr);}} function onNewInput(i){const inp=document.getElementById("NI"+i); const raw=inp.value.trim(); if (raw === ""){delete nMK[i]; inp.classList.remove("bad");}else{const v=parseFloat(raw); if (isNaN(v) || v<0 || v>4.0){inp.classList.add("bad"); nMK[i]=NaN;}else{inp.classList.remove("bad"); nMK[i]=v;}} const gpa=(nMK[i] !== undefined && !isNaN(nMK[i]))?nMK[i]:null; const gr=document.getElementById("NGr"+i); if (gr){gr.textContent=gpa != null?gpaLetter(gpa):"—"; gr.style.color=gpa != null?gpaColor(gpa):"var(--ink-3)";}const cell=document.getElementById("nPC"+i); if (cell) cell.innerHTML=`<div class="pv">${gpaCell(gpa)}</div>`; updateNew();}function updateNew(){const{cgpa, filled, hi, hiI, total}= calcNewStats(); const ce=document.getElementById("nCG"); const cs=document.getElementById("nCGS"); if (cgpa != null){ce.textContent=cgpa.toFixed(2); ce.style.color="var(--paper)"; cs.textContent=gpaLabel(cgpa)+" · out of 4.0";}else{ce.textContent="—"; ce.style.color=""; cs.textContent="enter GPAs to calculate";}document.getElementById("nSD").textContent=filled; const be=document.getElementById("nBest"); const bs=document.getElementById("nBestS"); if (hi != null){be.textContent=hi.toFixed(2); bs.textContent="Semester "+(hiI+1);}else{be.textContent="—"; bs.textContent="highest GPA";}renderNewChart(total); renderNewStanding(cgpa, filled, total); renderNewProjection(cgpa, filled, total); if (window._appMode === "new"){refreshDial("new", {},{cgpa });}} function renderNewChart(total){const ca=document.getElementById("nCA"); const ex=ca.querySelector(".tgt-line"); if (ex) ex.remove(); const tl=document.createElement("div"); tl.className="tgt-line"; tl.style.cssText=`top:${100-(3.7/4)*100}%;border-color:rgba(106,94,140,.3)`; const tll=document.createElement("div"); tll.className="tgt-lbl"; tll.style.cssText="color:var(--mist);background:var(--mist-ll);font-family:var(--ff-mono);font-size:.56rem"; tll.textContent="3.7"; tl.appendChild(tll); ca.appendChild(tl); const bars=document.getElementById("nBars"); bars.innerHTML=""; for (let i=0; i<total; i++){const v=nMK[i]; const gpa=(v !== undefined && !isNaN(v))?v:null; const yr=nFac === "BAR"?Math.ceil((i+1)/2):SEM_YEAR[Math.min(i,7)]; const col=YEAR_COLORS[Math.min(yr-1, 3)]; const grp=document.createElement("div"); grp.className="bg"; const h=gpa != null?(gpa/4)*100:0; const bar=document.createElement("div"); bar.className="bar"; bar.style.cssText=`height:${Math.max(h,.5)}%;background:${gpa != null?col:"var(--paper-3)"};opacity:${gpa != null?1:.35}`; if (gpa != null){const tt=document.createElement("div"); tt.className="bar-tt"; tt.textContent=`S${i+1}: ${gpa.toFixed(2)} GPA`; bar.appendChild(tt);}const lbl=document.createElement("div"); lbl.className="blbl"; lbl.textContent="S"+(i+1); const bc=document.createElement("div"); bc.className="bc"; bc.appendChild(bar); grp.appendChild(bc); grp.appendChild(lbl); bars.appendChild(grp);}} function renderNewStanding(cgpa, filled, total){const card=document.getElementById("nSC"); const nm=document.getElementById("nSN"); const bar=document.getElementById("nSB"); const badge=document.getElementById("nSBg"); const desc=document.getElementById("nSD2"); if (cgpa == null || filled === 0){card.style.borderColor=""; nm.textContent="— Awaiting your GPAs"; nm.style.color="var(--ink-3)"; desc.textContent="Enter semester GPAs above to see your standing."; bar.style.width="0%"; bar.style.background="var(--paper-3)"; badge.textContent="—"; badge.style.background="var(--paper-2)"; badge.style.color="var(--ink-3)"; badge.style.borderColor="var(--paper-4)"; return;}const st=getGpaSt(cgpa); const rem=total-filled; const nxt=GPA_STANDINGS.find(x => x.t>st.t); let txt=`Your CGPA is ${cgpa.toFixed(2)}.`; if (st.k === "exc"){txt += " Exceptional performance.";}else if (nxt){txt += ` You need ${(nxt.t-cgpa).toFixed(2)} more to reach ${nxt.l}.`;}if (rem>0) txt += ` ${rem} semester${rem !== 1?"s":""} remaining.`; card.style.borderColor=st.bc; nm.textContent=st.l; nm.style.color=st.c; desc.textContent=txt; bar.style.width=(cgpa/4)*100+"%"; bar.style.background=st.bar; badge.textContent=cgpa.toFixed(2)+" GPA"; badge.style.background=st.bg; badge.style.color=st.c; badge.style.borderColor=st.bc;}function renderNewProjection(cgpa, filled, total){const body=document.getElementById("nPB"); if (filled === 0){body.innerHTML=`<div class="proj-empty"> <div class="proj-empty-icon">📋</div> <p class="proj-empty-txt">Enter at least one semester GPA to see projections.</p> </div>`; return;}const rem=total-filled; if (rem === 0){body.innerHTML=`<div class="proj-ctx"> All ${total} semesters entered. Final CGPA: <strong>${cgpa != null?cgpa.toFixed(2):"—"}</strong> ${cgpa != null?". "+gpaLabel(cgpa)+".":""} </div>`; return;}let sumDone=0; for (let i=0; i<total; i++){const v=nMK[i]; if (v !== undefined && !isNaN(v)) sumDone += v;}let html=`<div class="proj-ctx"> ${filled} of ${total} semesters entered. CGPA: <strong>${cgpa != null?cgpa.toFixed(2):"—"}</strong>. ${rem} semester${rem !== 1?"s":""} remaining. </div><div class="proj-grid">`; GPA_STANDINGS.slice(0,4).forEach(st =>{if (cgpa != null && cgpa >= st.t){html += `<div class="pjc" style="background:${st.bg};border-color:${st.bc}"> <div class="pjc-top" style="background:${st.bar}"></div> <div class="pjc-label" style="color:${st.c}">${st.l}</div> <div class="pjc-num" style="color:${st.c}">Secured ✓</div> <div class="pjc-desc">Already at this level.</div> <span class="pjc-diff" style="background:rgba(62,92,74,.12);color:#3e5c4a">Achieved</span> </div>`; return;}const needed=rem>0?(st.t*total-sumDone)/rem:null; if (needed == null || needed>4.0){html += `<div class="pjc" style="opacity:.5"> <div class="pjc-top" style="background:var(--paper-4)"></div> <div class="pjc-label" style="color:var(--ink-3)">${st.l}</div> <div class="pjc-num" style="color:var(--ink-3)">&gt;4.0</div> <div class="pjc-desc">Not achievable given current scores.</div> <span class="pjc-diff" style="background:var(--paper-3);color:var(--ink-3)">Not possible</span> </div>`; return;}const{label, c, bg}= projDifficultyGpa(needed); html += `<div class="pjc" style="border-color:${st.bc}"> <div class="pjc-top" style="background:${st.bar}"></div> <div class="pjc-label" style="color:${st.c}">${st.l} (≥${st.t})</div> <div class="pjc-num" style="color:${c}">${needed.toFixed(2)}</div> <div class="pjc-desc">Average GPA per remaining semester.</div> <span class="pjc-diff" style="background:${bg};color:${c}">${label}</span> </div>`; }); html += "</div>"; body.innerHTML=html;}function clearNew(){nMK={}; renderNewTable(); updateNew();}initPill(); renderOldFaculty(); renderOldTable(); updateOld(); renderNewFaculty(); renderNewTable(); updateNew();</script>
+</body>
+</html>

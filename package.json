@@ -1,0 +1,14 @@
+{
+  "name": "ioe-result-calculator",
+  "version": "1.0.0",
+  "description": "IOE Result Calculator — Tribhuvan University, Nepal",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npx serve . --listen 3000",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": ["IOE", "Tribhuvan University", "Nepal", "engineering", "result"],
+  "author": "",
+  "license": "MIT"
+}
